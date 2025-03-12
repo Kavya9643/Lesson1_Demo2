@@ -4,12 +4,18 @@ import './styles.css';
 
 function App() {
     const [todos, setTodos] = useState([]);
-    const [inputValue, setInputValue] = useState('');
+    const [task, setTask] = useState('');
+    const [priority, setPriority] = useState('medium');
+    const [category, setCategory] = useState('work');
+    const [dueDate, setDueDate] = useState('');
 
     const addTodo = () => {
-        if (inputValue.trim()) {
-            setTodos([...todos, { text: inputValue, completed: false }]);
-            setInputValue('');
+        if (task.trim()) {
+            setTodos([...todos, { task, priority, category, dueDate, completed: false }]);
+            setTask('');
+            setPriority('medium');
+            setCategory('work');
+            setDueDate('');
         }
     };
 
@@ -30,9 +36,24 @@ function App() {
             <h1>To-Do List</h1>
             <input 
                 type="text" 
-                value={inputValue} 
-                onChange={(e) => setInputValue(e.target.value)} 
-                placeholder="Add a new task" 
+                value={task} 
+                onChange={(e) => setTask(e.target.value)} 
+                placeholder="Task" 
+            />
+            <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                <option value="work">Work</option>
+                <option value="personal">Personal</option>
+                <option value="health">Health</option>
+            </select>
+            <input 
+                type="date" 
+                value={dueDate} 
+                onChange={(e) => setDueDate(e.target.value)} 
             />
             <button onClick={addTodo}>Add</button>
             <ul>
@@ -40,8 +61,8 @@ function App() {
                     <TodoItem 
                         key={index} 
                         todo={todo} 
-                        onToggle={() => toggleTodo(index)} 
-                        onDelete={() => deleteTodo(index)} 
+                        toggleTodo={() => toggleTodo(index)} 
+                        deleteTodo={() => deleteTodo(index)} 
                     />
                 ))}
             </ul>

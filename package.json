@@ -2,12 +2,15 @@
   "name": "react-todo-list",
   "version": "1.0.0",
   "description": "A simple React-based To-Do List application",
+  "homepage": "https://kavya9643.github.io/Lesson1_Demo2/",
   "main": "src/index.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "modules": "^0.4.0",
@@ -35,6 +38,7 @@
   },
   "devDependencies": {
     "babel-loader": "^8.1.0",
+    "gh-pages": "^6.3.0",
     "webpack": "^5.98.0"
   }
 }
